@@ -61,7 +61,7 @@ export class LoginPage implements OnInit {
       console.log('Authenticated: ', this.authForm.value);
       console.log('Redirecting...');
     } catch (e) {
-      console.log('Auth error: ', e);
+      console.log('Auth error: ', e);//
     }
   }
 }
