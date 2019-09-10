@@ -11,9 +11,40 @@
     [formGroup]="authForm"
     (submit)="onSubmit()"
   >
+
+    <ng-container *ngIf="!configs.isSignIn">
+      <!-- So vai exibir se for cadastro -->
+      <ion-item>
+        <ion-icon
+          name="person"
+          color="primary"
+          slot="start"
+        ></ion-icon>
+        <ion-input
+          type="text"
+          placeholder="Name"
+          formControlName="name"
+        ></ion-input>
+        <ion-note
+          slot="end"
+          color="danger"
+          *ngIf="name.dirty && name.hasError('Required')"
+        >
+          Required
+        </ion-note>
+        <ion-note
+          slot="end"
+          color="danger"
+          *ngIf="name.dirty && name.hasError('minlength')"
+        >
+          Min 3 characterss
+        </ion-note>
+      </ion-item>
+    </ng-container>
+
     <ion-item>
       <ion-icon
-        name="person"
+        name="mail"
         color="primary"
         slot="start"
       ></ion-icon>
@@ -72,14 +103,16 @@
       type="submit"
       [disabled]="authForm.invalid"
     >
-      Login
+      {{configs.action}}
     </ion-button>
   </form>
   <ion-button
     expand="block"
     fill="clear"
+    (click)="changeAuthAction()"
   >
-    Create Account
+    {{configs.actionChange}}
+    <!-- medoto na login.page.ts que faz a alternancia do form para exibir o cadastro -->
   </ion-button>
 
   <ion-button expand="block">
