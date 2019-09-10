@@ -9,7 +9,7 @@
 
   <form
     [formGroup]="authForm"
-    (submit)="onSubmit()"
+    (submit)="onSubmit(authProvider.Email)"
   >
 
     <ng-container *ngIf="!configs.isSignIn">
@@ -115,7 +115,10 @@
     <!-- medoto na login.page.ts que faz a alternancia do form para exibir o cadastro -->
   </ion-button>
 
-  <ion-button expand="block">
+  <ion-button
+    expand="block"
+    (click)="onSubmit(authProvider.Facebook)"
+  >
     <ion-icon
       name="logo-facebook"
       slot="start"
