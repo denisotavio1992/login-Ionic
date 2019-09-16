@@ -25,7 +25,7 @@ export class AuthService {
     if (provider !== AuthProvider.Email) {
       operation = this.signInWithPopup(provider);
     } else {
-      operation = isSignIn ? this.signUpWithEmail(user) : this.signUpWithEmail(user);
+      operation = isSignIn ? this.signInWithEmail(user) : this.signUpWithEmail(user);
     }
     return operation;
   }
