@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Task } from '../../models/task.model';
+import { TasksService } from '../../services/tasks.service';
 
 @Component({
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.page.html',
   styleUrls: ['./tasks-list.page.scss']
 })
-export class TasksListPage implements OnInit {
+export class TasksListPage {
   tasks$: Observable<Task[]>;
 
-  constructor() {}
+  constructor(private tasksService: TasksService) {}
 
-  ngOnInit() {
-    this.tasks$ = of([
-      { id: 'sfdsf', title: 'Aprender ionic', done: false },
-      { id: 'sfdsgff', title: 'Aprender Firestore', done: false }
-    ]);
+  ionViewDidEnter(): void {
+    this.tasks$ = this.tasksService.getAll();
   }
 }
