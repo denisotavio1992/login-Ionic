@@ -36,7 +36,7 @@ export class TasksListPage implements OnInit {
       message: `Voce realmente deseja apagar a tarefa "${task.title}"?`,
       buttons: [
         {
-          text: 'Yes',
+          text: 'Sim',
           handler: async () => {
             await this.tasksService.delete(task);
             await this.overlayService.toast({
@@ -44,7 +44,7 @@ export class TasksListPage implements OnInit {
             });
           }
         },
-        'No'
+        'Não'
       ]
     });
   }
