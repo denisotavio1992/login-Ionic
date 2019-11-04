@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
+    <!--Aqui esta o menu dinamico que pode ser replicado em varias paginas da aplicação-->
+    <app-menu-toggle slot="start" menu="main-menu"></app-menu-toggle>
     <ion-title>Tasks List</ion-title>
+    <app-logout-button slot="end"></app-logout-button>
   </ion-toolbar>
 </ion-header>
 
