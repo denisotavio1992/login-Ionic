@@ -8,14 +8,26 @@ import { AuthService } from 'src/app/core/services/auth.service';
   providedIn: 'root'
 })
 export class TasksService extends Firestore<Task> {
-  constructor(private authservice: AuthService, db: AngularFirestore) {
+  constructor(private authService: AuthService, db: AngularFirestore) {
     super(db);
     this.init();
   }
-  private init(): void {
-    this.authservice.authState$.subscribe(user => {
+  /*private init(): void {
+    this.authService.authState$.subscribe(user => {
       if (user) {
         this.setCollection(`/users/${user.uid}/tasks`);
+        return;
+      }
+      this.setCollection(null);
+    });
+  }*/
+
+  private init(): void {
+    this.authService.authState$.subscribe(user => {
+      if (user) {
+        this.setCollection(`/users/${user.uid}/tasks`, ref =>
+          ref.orderBy('done', 'asc').orderBy('title', 'asc')
+        );
         return;
       }
       this.setCollection(null);

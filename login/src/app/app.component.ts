@@ -10,6 +10,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  pages: { url: string; direction: string; icon: string; text: string }[];
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -19,6 +21,11 @@ export class AppComponent {
   }
 
   initializeApp() {
+    this.pages = [
+      // indica os caminhos a seguiir nos items do menu
+      { url: '/tasks', direction: 'back', icon: 'checkmark', text: 'Tasks' },
+      { url: '/tasks/create', direction: 'forward', icon: 'add', text: 'New Task' }
+    ];
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
