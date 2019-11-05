@@ -1,7 +1,7 @@
-<ion-app>
+<ion-split-pane contentId="menu-content" when="md">
   <ion-router-outlet></ion-router-outlet>
 
-  <ion-menu contentId="menu-content" menuid="main-menu">
+  <ion-menu contentId="menu-content" menuId="main-menu" [disabled]="true">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Menu</ion-title>
@@ -27,4 +27,4 @@
   </ion-menu>
 
   <ion-router-outlet id="menu-content"></ion-router-outlet
-></ion-app>
+></ion-split-pane>

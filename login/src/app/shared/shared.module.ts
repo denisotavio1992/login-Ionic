@@ -8,6 +8,12 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
 @NgModule({
   declarations: [LogoutButtonComponent, MenuToggleComponent],
   imports: [IonicModule],
-  exports: [CommonModule, ReactiveFormsModule, IonicModule, LogoutButtonComponent, MenuToggleComponent]
+  exports: [
+    CommonModule,
+    ReactiveFormsModule,
+    IonicModule,
+    LogoutButtonComponent,
+    MenuToggleComponent
+  ]
 })
 export class SharedModule {}

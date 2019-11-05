@@ -24,13 +24,15 @@ export class LogoutButtonComponent implements OnInit {
     private overlayService: OverlayService
   ) {}
 
-  async ngOnInit() {
-
+  async ngOnInit(): Promise<void> {
+    if (!(await this.menuCtrl.isEnabled(this.menu))) {
+      this.menuCtrl.enable(true, this.menu);
+    }
   }
 
   async logout(): Promise<void> {
     await this.overlayService.alert({
-      message: 'Do you really want to quit?',
+      message: 'Você realmente deseja sair ?',
       buttons: [
         {
           text: 'Sim',

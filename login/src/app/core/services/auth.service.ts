@@ -31,6 +31,7 @@ export class AuthService {
   }
 
   logout(): Promise<void> {
+    // sair do app
     return this.afAuth.auth.signOut();
   }
 

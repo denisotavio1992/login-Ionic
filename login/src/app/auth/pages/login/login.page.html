@@ -1,143 +1,80 @@
 <ion-content padding>
-  <h1 text-center>
-    <ion-icon
-      name="cart"
-      color="primary"
-      class="icon-7em"
-    ></ion-icon>
-  </h1>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col size-sm="8" size-md="4" size-lg="3" size-xl="3">
+        <h1 text-center>
+          <ion-icon name="cart" color="primary" class="icon-7em"></ion-icon>
+        </h1>
 
-  <form
-    [formGroup]="authForm"
-    (submit)="onSubmit(authProvider.Email)"
-  >
+        <form [formGroup]="authForm" (submit)="onSubmit(authProvider.Email)">
+          <ng-container *ngIf="!configs.isSignIn">
+            <!-- So vai exibir se for cadastro -->
+            <ion-item>
+              <ion-icon name="person" color="primary" slot="start"></ion-icon>
+              <ion-input type="text" placeholder="Name" formControlName="name"></ion-input>
+              <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('Required')">
+                Required
+              </ion-note>
+              <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('minlength')">
+                Min 3 characterss
+              </ion-note>
+            </ion-item>
+          </ng-container>
 
-    <ng-container *ngIf="!configs.isSignIn">
-      <!-- So vai exibir se for cadastro -->
-      <ion-item>
-        <ion-icon
-          name="person"
-          color="primary"
-          slot="start"
-        ></ion-icon>
-        <ion-input
-          type="text"
-          placeholder="Name"
-          formControlName="name"
-        ></ion-input>
-        <ion-note
-          slot="end"
-          color="danger"
-          *ngIf="name.dirty && name.hasError('Required')"
-        >
-          Required
-        </ion-note>
-        <ion-note
-          slot="end"
-          color="danger"
-          *ngIf="name.dirty && name.hasError('minlength')"
-        >
-          Min 3 characterss
-        </ion-note>
-      </ion-item>
-    </ng-container>
+          <ion-item>
+            <ion-icon name="mail" color="primary" slot="start"></ion-icon>
+            <ion-input
+              type="email"
+              placeholder="E-mail"
+              formControlName="email"
+              inputmode="email"
+              autofocus="true"
+            ></ion-input>
+            <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('Required')">
+              Required
+            </ion-note>
+            <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">
+              Invalid E-mail
+            </ion-note>
+          </ion-item>
 
-    <ion-item>
-      <ion-icon
-        name="mail"
-        color="primary"
-        slot="start"
-      ></ion-icon>
-      <ion-input
-        type="email"
-        placeholder="E-mail"
-        formControlName="email"
-        inputmode="email"
-        autofocus="true"
-      ></ion-input>
-      <ion-note
-        slot="end"
-        color="danger"
-        *ngIf="email.dirty && email.hasError('Required')"
-      >
-        Required
-      </ion-note>
-      <ion-note
-        slot="end"
-        color="danger"
-        *ngIf="email.dirty && email.hasError('email')"
-      >
-        Invalid E-mail
-      </ion-note>
-    </ion-item>
+          <ion-item>
+            <ion-icon name="lock" color="primary" slot="start"></ion-icon>
+            <ion-input
+              type="password"
+              placeholder="Password"
+              formControlName="password"
+            ></ion-input>
+            <ion-note
+              slot="end"
+              color="danger"
+              *ngIf="password.dirty && password.hasError('Required')"
+            >
+              Required
+            </ion-note>
+            <ion-note
+              slot="end"
+              color="danger"
+              *ngIf="password.dirty && password.hasError('minlength')"
+            >
+              Min 6 characterss
+            </ion-note>
+          </ion-item>
 
-    <ion-item>
-      <ion-icon
-        name="lock"
-        color="primary"
-        slot="start"
-      ></ion-icon>
-      <ion-input
-        type="password"
-        placeholder="Password"
-        formControlName="password"
-      ></ion-input>
-      <ion-note
-        slot="end"
-        color="danger"
-        *ngIf="password.dirty && password.hasError('Required')"
-      >
-        Required
-      </ion-note>
-      <ion-note
-        slot="end"
-        color="danger"
-        *ngIf="password.dirty && password.hasError('minlength')"
-      >
-        Min 6 characterss
-      </ion-note>
-    </ion-item>
+          <ion-button expand="block" type="submit" [disabled]="authForm.invalid">
+            {{ configs.action }}
+          </ion-button>
+        </form>
+        <ion-button expand="block" fill="clear" (click)="changeAuthAction()">
+          {{ configs.actionChange }}
+          <!-- medoto na login.page.ts que faz a alternancia do form para exibir o cadastro -->
+        </ion-button>
 
-    <ion-button
-      expand="block"
-      type="submit"
-      [disabled]="authForm.invalid"
-    >
-      {{configs.action}}
-    </ion-button>
-  </form>
-  <ion-button
-    expand="block"
-    fill="clear"
-    (click)="changeAuthAction()"
-  >
-    {{configs.actionChange}}
-    <!-- medoto na login.page.ts que faz a alternancia do form para exibir o cadastro -->
-  </ion-button>
-
-  <ion-button
-    expand="block"
-    (click)="onSubmit(authProvider.Facebook)"
-  >
-    <ion-icon
-      name="logo-facebook"
-      slot="start"
-    ></ion-icon>
-    Login with Facebook
-  </ion-button>
-
-  <ion-button expand="block">
-    <ion-icon
-      name="logo-instagram"
-      slot="start"
-    ></ion-icon>
-    Login with Instagran
-  </ion-button>
-  <ion-button expand="block">
-    <ion-icon
-      name="logo-google"
-      slot="start"
-    ></ion-icon>
-    Login with Google
-  </ion-button>
+        <ion-button expand="block" (click)="onSubmit(authProvider.Facebook)">
+          <ion-icon name="logo-facebook" slot="start"></ion-icon>
+          Login with Facebook
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
