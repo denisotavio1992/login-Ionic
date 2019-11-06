@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
     AngularFireModule.initializeApp(environment.firebase), // firebase no enverements
     AngularFireAuthModule,
     AngularFirestoreModule.enablePersistence({
-      experimentalTabSynchronization: true
+      synchronizeTabs: true
     })
     // modulo nescessario para o AF fique disponivel na aplicação
   ],
