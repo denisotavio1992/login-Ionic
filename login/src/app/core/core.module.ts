@@ -17,7 +17,10 @@ import { environment } from 'src/environments/environment';
     IonicModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase), // firebase no enverements
     AngularFireAuthModule,
-    AngularFirestoreModule //modulo nescessario para o AF fique disponivel na aplicação
+    AngularFirestoreModule.enablePersistence({
+      experimentalTabSynchronization: true
+    })
+    // modulo nescessario para o AF fique disponivel na aplicação
   ],
   exports: [BrowserModule, IonicModule],
   providers: [
